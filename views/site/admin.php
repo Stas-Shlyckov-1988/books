@@ -51,16 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($book, 'file')->fileInput(['class'=>'form-control']) ?>
             <?= (!empty($book->file) ? '<a href="/site/view?id=' . $book->id . '">Файл ссылка</a>' : '') ?>
             <?= $form->field($book, 'title') ?>
-            <?= $form->field($book, 'year')
-                ->widget(DatePicker::className(),[
-                'dateFormat' => 'yyyy-MM-dd',
-                'clientOptions' => [
-                //     'dateFormat' => 'yy-mm-dd',
-                    
-                ],
-                'options' => ['class' => 'form-control'],
-                ])  
-            ?>
+            <?= $form->field($book, 'year') ?>
         
             <div class="form-group">
                 <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
