@@ -63,4 +63,12 @@ class Book extends \yii\db\ActiveRecord
         return $this->hasMany(AuthorHasBook::class, ['book_id' => 'id']);
     }
 
+    public function getAuthorsList() {
+        $text = [];
+        foreach($this->authorHasBooks as $model) {
+            $text[] = $model->author->fio;
+        }
+        return implode(', ', $text);
+    }
+
 }

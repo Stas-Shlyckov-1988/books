@@ -64,7 +64,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $books = Book::find()->all();
+
+        return $this->render('index', [
+            'books' => $books,
+        ]);
     }
 
     /**
