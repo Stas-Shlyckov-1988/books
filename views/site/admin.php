@@ -49,6 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="Book">
 
             <?= $form->field($book, 'file')->fileInput(['class'=>'form-control']) ?>
+            <?= (!empty($book->file) ? '<a href="/site/view?id=' . $book->id . '">Файл ссылка</a>' : '') ?>
             <?= $form->field($book, 'title') ?>
             <?= $form->field($book, 'year')
                 ->widget(DatePicker::className(),[

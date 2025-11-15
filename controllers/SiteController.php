@@ -149,6 +149,16 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionView($id) {
+        $book = Book::findOne($id);
+
+        return Yii::$app->response->sendContentAsFile(
+            $book->file, 
+            $book->title, 
+            ['inline' => true, 'mimeType' => 'application/pdf']
+        );
+    }
+
     public function actionDeleteAuthor($id) {
         $author = Author::findOne($id);
         $bookId = $author->authorHasBooks[0]->book->id;
