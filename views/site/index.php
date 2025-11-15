@@ -22,7 +22,12 @@ $this->title = 'Книги';
                 <p><?= $book->getAuthorsList() ?><br>
                 <?= $book->year ?>.</p>
 
-                <p><a class="btn btn-outline-secondary" href="/site/view?id=<?= $book->id ?>">Прочитать &raquo;</a></p>
+                <p>
+                    <a class="btn btn-outline-secondary" href="/site/view?id=<?= $book->id ?>">Прочитать &raquo;</a>
+                    <?php if(!\Yii::$app->user->isGuest): ?>
+                        <a class="btn btn-outline-secondary" href="/site/admin?id=<?= $book->id ?>">Редактировать</a>
+                    <?php endif; ?>
+                </p>
             </div>
             <?php endforeach; ?>
         </div>

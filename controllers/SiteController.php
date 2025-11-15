@@ -179,4 +179,17 @@ class SiteController extends Controller
         $author->delete();
         $this->redirect(['admin', 'id' => $bookId]);
     }
+
+    public function actionDeleteBook($id) {
+
+        if (\Yii::$app->getUser()->isGuest) {
+            throw new \yii\web\HttpException(403, 'Page could not be found.');
+
+        }
+
+        $book = Book::findOne($id);
+        $book->delete();
+        $this->redirect(['index']);
+    }
+
 }

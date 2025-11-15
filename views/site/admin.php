@@ -64,6 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
         
             <div class="form-group">
                 <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
+                <?= $book->isNewRecord ? '' : Html::a('Удалить', ['delete-book', 'id' => $book->id], ['class' => 'btn btn-danger']) ?>
             </div>
         <?php ActiveForm::end(); ?>
 
