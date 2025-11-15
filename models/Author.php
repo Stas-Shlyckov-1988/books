@@ -31,6 +31,7 @@ class Author extends \yii\db\ActiveRecord
     {
         return [
             [['fio'], 'required'],
+            //[['fio'], 'unique'],
             [['fio'], 'string', 'max' => 255],
         ];
     }

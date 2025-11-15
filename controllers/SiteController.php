@@ -11,6 +11,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Author;
 use app\models\Book;
+use app\models\AuthorHasBook;
 
 class SiteController extends Controller
 {
@@ -123,10 +124,30 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionAdmin()
+    public function actionAdmin($id = null)
     {
-        $author = new Author;
+        $request = \Yii::$app->request;
+
+        if (!$author = Author::findOne(['fio' => $request->post()['Author']['fio']]))
+            $author = new Author;
         $book = new Book;
+
+        if ($request->isPost) {
+            
+            if ($author->load($request->post()) && $book->load($request->post())) {
+                if ($book->save() && $author->save()) {
+                    
+                }
+                // else {
+                //     $author->delete();
+                //     $book->delete();
+                // }
+                
+            }
+            
+            //var_dump($book); die;
+        }
+        
 
         return $this->render('admin', [
             'author' => $author,

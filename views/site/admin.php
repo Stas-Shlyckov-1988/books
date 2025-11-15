@@ -36,6 +36,11 @@ $this->params['breadcrumbs'][] = $this->title;
 // );
 
 ?>
+<style>
+    .help-block {
+        color: red;
+    }
+</style>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
