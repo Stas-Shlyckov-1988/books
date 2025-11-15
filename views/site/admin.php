@@ -32,9 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
             <?php if(!empty($book->authorHasBooks)): ?>
+                <label>Списки авторов:</label>
                 <ul class="list-group">
                 <?php foreach($book->authorHasBooks as $model): ?>
-                    <li class="list-group-item"><?= $model->author->fio ?></li>
+                    <li class="list-group-item">
+                        <?= $model->author->fio ?> 
+                        <a href="/site/delete-author?id=<?= $model->author->id ?>"><span style="float: right;cursor: pointer;" class="badge text-bg-danger rounded-pill">Х</span></a>
+                    </li>
                 <?php endforeach; ?>
                 </ul>
             <?php endif; ?>

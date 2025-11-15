@@ -43,7 +43,7 @@ class Author extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'fio' => 'ФИО',
+            'fio' => 'ФИО автора',
         ];
     }
 

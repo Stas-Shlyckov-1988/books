@@ -161,4 +161,11 @@ class SiteController extends Controller
             'book' => $book,
         ]);
     }
+
+    public function actionDeleteAuthor($id) {
+        $author = Author::findOne($id);
+        $bookId = $author->authorHasBooks[0]->book->id;
+        $author->delete();
+        $this->redirect(['admin', 'id' => $bookId]);
+    }
 }
