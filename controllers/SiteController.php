@@ -127,21 +127,27 @@ class SiteController extends Controller
     public function actionAdmin($id = null)
     {
         $request = \Yii::$app->request;
-
-        if (!$author = Author::findOne(['fio' => $request->post()['Author']['fio']]))
-            $author = new Author;
-        $book = new Book;
+        if ($id) {
+            $book = Book::findOne($id);
+            //$author = $book->AuthorHasBook;
+        }
+        else {
+            $book = new Book;
+            if (empty($request->post()['Author']) || !$author = Author::findOne(['fio' => $request->post()['Author']['fio']]))
+                $author = new Author;
+        }
 
         if ($request->isPost) {
             
             if ($author->load($request->post()) && $book->load($request->post())) {
                 if ($book->save() && $author->save()) {
-                    
+                    $has = new AuthorHasBook;
+                    $has->author_id = $author->id;
+                    $has->book_id = $book->id;
+                    $has->save();
+
+                    $this->redirect(['admin', 'id' => $book->id]);
                 }
-                // else {
-                //     $author->delete();
-                //     $book->delete();
-                // }
                 
             }
             

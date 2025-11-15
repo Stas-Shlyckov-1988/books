@@ -34,6 +34,7 @@ class Book extends \yii\db\ActiveRecord
         return [
             [['file'], 'default', 'value' => null],
             [['title', 'year'], 'required'],
+            [['title'], 'unique'],
             [['file'], 'string'],
             [['title', 'year'], 'string', 'max' => 255],
         ];
