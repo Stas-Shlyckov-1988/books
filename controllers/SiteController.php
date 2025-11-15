@@ -112,6 +112,10 @@ class SiteController extends Controller
      */
     public function actionAdmin($id = null)
     {
+        if (\Yii::$app->getUser()->isGuest) {
+            throw new \yii\web\HttpException(403, 'Page could not be found.');
+
+        }
         $request = \Yii::$app->request;
         if ($id) {
             $book = Book::findOne($id);
@@ -164,6 +168,12 @@ class SiteController extends Controller
     }
 
     public function actionDeleteAuthor($id) {
+
+        if (\Yii::$app->getUser()->isGuest) {
+            throw new \yii\web\HttpException(403, 'Page could not be found.');
+
+        }
+
         $author = Author::findOne($id);
         $bookId = $author->authorHasBooks[0]->book->id;
         $author->delete();
