@@ -130,11 +130,13 @@ class SiteController extends Controller
 
         if ($request->isPost) {
             
-            if ($author->load($request->post()) && $book->load($request->post())) {
+            if ($author->load($request->post())) {
 
-                if (!empty($_FILES['Book'])) {
+                if (!$_FILES['Book']['error']['file']) {
                     $book->file = file_get_contents($_FILES['Book']['tmp_name']['file']);
                 }
+                $book->title = $request->post()['Book']['title'];
+                $book->year = $request->post()['Book']['year'];
 
                 if ($book->save() && $author->save()) {
                     $has = new AuthorHasBook;
