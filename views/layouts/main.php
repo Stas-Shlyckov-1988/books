@@ -40,8 +40,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Домашняя', 'url' => ['/site/index']],
-            ['label' => 'О нас', 'url' => ['/site/about']],
-            ['label' => 'Контакты', 'url' => ['/site/contact']],
+            ['label' => 'Админ', 'url' => ['/site/admin']],
+           // ['label' => 'Контакты', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest
                 ? ['label' => 'Login', 'url' => ['/site/login']]
                 : '<li class="nav-item">'

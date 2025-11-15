@@ -46,9 +46,9 @@ class Book extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'year' => 'Year',
-            'file' => 'File',
+            'title' => 'Название книги',
+            'year' => 'Год издания',
+            'file' => 'Файл (Книга)',
         ];
     }
 

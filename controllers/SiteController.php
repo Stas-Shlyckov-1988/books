@@ -9,6 +9,8 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Author;
+use app\models\Book;
 
 class SiteController extends Controller
 {
@@ -117,12 +119,18 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays about page.
+     * Displays admin page.
      *
      * @return string
      */
-    public function actionAbout()
+    public function actionAdmin()
     {
-        return $this->render('about');
+        $author = new Author;
+        $book = new Book;
+
+        return $this->render('admin', [
+            'author' => $author,
+            'book' => $book,
+        ]);
     }
 }
