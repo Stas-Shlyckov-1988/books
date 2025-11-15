@@ -70,5 +70,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div><!-- Book -->
 
-    <code><?= __FILE__ ?></code>
 </div>

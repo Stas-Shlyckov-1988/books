@@ -130,25 +130,30 @@ class SiteController extends Controller
 
         if ($request->isPost) {
             
-            if ($author->load($request->post())) {
+            if (!empty($request->post()['Author']['fio'])) {
+                $author->fio = $request->post()['Author']['fio'];
+                $author->save();
+            }
+                
 
-                if (!$_FILES['Book']['error']['file']) {
-                    $book->file = file_get_contents($_FILES['Book']['tmp_name']['file']);
-                }
-                $book->title = $request->post()['Book']['title'];
-                $book->year = $request->post()['Book']['year'];
+            if (!$_FILES['Book']['error']['file']) {
+                $book->file = file_get_contents($_FILES['Book']['tmp_name']['file']);
+            }
+            $book->title = $request->post()['Book']['title'];
+            $book->year = $request->post()['Book']['year'];
 
-                if ($book->save() && $author->save()) {
+            if ($book->save()) {
+
+                if ($author->id) {
                     $has = new AuthorHasBook;
                     $has->author_id = $author->id;
                     $has->book_id = $book->id;
                     $has->save();
-
-                    $this->redirect(['admin', 'id' => $book->id]);
                 }
-                
-            }
-            
+               
+
+                $this->redirect(['admin', 'id' => $book->id]);
+            }            
             
         }
         
