@@ -30,7 +30,7 @@ class Author extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fio'], 'required'],
+            //[['fio'], 'required'],
             //[['fio'], 'unique'],
             [['fio'], 'string', 'max' => 255],
         ];

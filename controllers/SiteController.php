@@ -102,24 +102,6 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
      * Displays admin page.
      *
      * @return string
@@ -141,6 +123,11 @@ class SiteController extends Controller
         if ($request->isPost) {
             
             if ($author->load($request->post()) && $book->load($request->post())) {
+
+                if (!empty($_FILES['Book'])) {
+                    $book->file = file_get_contents($_FILES['Book']['tmp_name']['file']);
+                }
+
                 if ($book->save() && $author->save()) {
                     $has = new AuthorHasBook;
                     $has->author_id = $author->id;
