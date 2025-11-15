@@ -12,28 +12,7 @@ use yii\jui\DatePicker;
 $this->title = 'Админ';
 $this->params['breadcrumbs'][] = $this->title;
 
-// $this->registerJsFile(
-//     '@web/node_modules/jqueryui/jquery-ui.min.js',
-//     ['depends' => [\yii\web\JqueryAsset::class]]
-// );
 
-// $this->registerCssFile("@web/node_modules/jqueryui/jquery-ui.min.css", [
-//     'depends' => [\yii\web\JqueryAsset::class],
-//     'media' => 'print',
-// ], 'css-print-theme');
-
-// $this->registerCssFile("@web/node_modules/jqueryui/jquery-ui.theme.min.css", [
-//     'depends' => [\yii\web\JqueryAsset::class],
-//     'media' => 'print',
-// ], 'css-print-theme');
-
-// $this->registerJs(<<<JS
-//     $( function() {
-//         $( "#book-year" ).datepicker();
-//     } );
-
-// JS
-// );
 
 ?>
 <style>
@@ -52,6 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
+            <?php if(!empty($book->authorHasBooks)): ?>
+                <ul class="list-group">
+                <?php foreach($book->authorHasBooks as $model): ?>
+                    <li class="list-group-item"><?= $model->author->fio ?></li>
+                <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
             <?= $form->field($author, 'fio') ?>
 
     </div><!-- Admin -->

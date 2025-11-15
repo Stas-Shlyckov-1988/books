@@ -129,7 +129,8 @@ class SiteController extends Controller
         $request = \Yii::$app->request;
         if ($id) {
             $book = Book::findOne($id);
-            //$author = $book->AuthorHasBook;
+            $author = new Author;
+            //var_dump($author); die;
         }
         else {
             $book = new Book;
@@ -151,7 +152,7 @@ class SiteController extends Controller
                 
             }
             
-            //var_dump($book); die;
+            
         }
         
 
